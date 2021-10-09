@@ -19,4 +19,6 @@
 .eraser {
   width: 28px;
   height: 28px;
+  background-image: url("icon/eraser.png");
+  background-size: contain;
 }

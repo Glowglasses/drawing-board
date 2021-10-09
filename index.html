@@ -11,9 +11,8 @@
 
 <body>
   <div id="tool-bar">
-    <section></section>
     <input type="color" class='colorPicker'>
-    <object data="/icon/eraser.svg" type="image/svg+xml" class="eraser" />
+    <div class="eraser" onclick="clearPainting()"></div>
   </div>
   <canvas id="canvas">
   </canvas>
@@ -31,6 +30,10 @@
     colorPicker.addEventListener("input", changeColor);
     function changeColor(e) {
       ctx.strokeStyle = e.target.value
+    }
+
+    function clearPainting() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
 
     if ("ontouchstart" in window) {
