@@ -6,3 +6,17 @@
 #canvas {
   display: block;
 }
+#tool-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+.eraser {
+  width: 28px;
+  height: 28px;
+}

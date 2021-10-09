@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 
 <head>
   <meta charset="UTF-8">
@@ -10,12 +10,17 @@
 </head>
 
 <body>
+  <div id="tool-bar">
+    <section></section>
+    <input type="color" class='colorPicker'>
+    <object data="/icon/eraser.svg" type="image/svg+xml" class="eraser" />
+  </div>
   <canvas id="canvas">
-
   </canvas>
 
   <script type="text/javascript">
     let canvas = document.getElementById("canvas")
+    const colorPicker = document.querySelector('.colorPicker')
     canvas.height = document.documentElement.clientHeight;
     canvas.width = document.documentElement.clientWidth;
     let ctx = canvas.getContext('2d');
@@ -23,10 +28,13 @@
     ctx.lineCap = "round";
     let painting = false;
     let last = [];
+    colorPicker.addEventListener("input", changeColor);
+    function changeColor(e) {
+      ctx.strokeStyle = e.target.value
+    }
 
     if ("ontouchstart" in window) {
       canvas.ontouchstart = (e) => {
-        console.log(e)
         painting = true
         last = [e.touches[0].clientX, e.touches[0].clientY]
       }
@@ -37,7 +45,6 @@
           last = [e.touches[0].clientX, e.touches[0].clientY]
           ctx.lineTo(last[0], last[1])
           ctx.stroke()
-
         }
       }
       canvas.ontouchend = () => {
@@ -56,7 +63,6 @@
           last = [e.clientX, e.clientY]
           ctx.lineTo(last[0], last[1])
           ctx.stroke()
-
         }
       }
       canvas.onmouseup = () => {
