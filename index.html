@@ -12,6 +12,11 @@
 <body>
   <div id="tool-bar">
     <input type="color" class='colorPicker'>
+    <select onchange="selectLineWidth(event)">
+      <option value="4">正常</option>
+      <option value="6">粗</option>
+      <option value="2">细</option>
+    </select>
     <div class="eraser" onclick="clearPainting()"></div>
   </div>
   <canvas id="canvas">
@@ -23,13 +28,17 @@
     canvas.height = document.documentElement.clientHeight;
     canvas.width = document.documentElement.clientWidth;
     let ctx = canvas.getContext('2d');
-    ctx.lineWidth = 5;
+    ctx.lineWidth = 4;
     ctx.lineCap = "round";
     let painting = false;
     let last = [];
     colorPicker.addEventListener("input", changeColor);
     function changeColor(e) {
       ctx.strokeStyle = e.target.value
+    }
+
+    function selectLineWidth(event) {
+      ctx.lineWidth = parseInt(event.target.value)
     }
 
     function clearPainting() {
